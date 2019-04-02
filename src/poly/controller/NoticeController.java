@@ -46,6 +46,14 @@ public class NoticeController {
 		return "/index";
 	}
 	
+	@RequestMapping(value="/notice/noticeList")
+	public String noticeList(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception {
+		log.info(this.getClass() + " noticeList Start");
+		
+		log.info(this.getClass() + " noticeList End");
+		return "/notice/noticeList";
+	}
+	
 	/**
 	 * 게시판 리스트 보여주기
 	 * */

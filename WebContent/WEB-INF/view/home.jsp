@@ -35,12 +35,33 @@
 <body class="w3-light-grey w3-content" style="max-width:375px">
 	<%@include file="top.jsp"%>
 	<div class="mainScreen">
-		<section class="#">
+		<section class="#" style="padding-top:100px;">
 			asd
 		</section>
-		<section class="">
-			LOGIN
+		<section class="#">
+		<!-- 로그인을 하지 않았을 경우 -->
+		<% if("".equals(g_name)) { %>
+			<!-- 구글 로그인 버튼 -->
+			<div class="g-signin2" data-onsuccess="onSignIn"></div>
+			<!-- 페이스북 로그인 버튼 -->
+			
+		<!-- 구글 로그인을 했을 경우 -->
+		<% } else { %>
+		<a class="nav-link" href="#"><%= g_name + "님 환영합니다." %></a>
+			<button onclick="login()">Google Login</button>
+		<a href="#" onclick="signOut();">Sign out</a>
+			<script>
+				function signOut() {
+					var auth2 = gapi.auth2.getAuthInstance();
+					auth2.signOut().then(function() {
+						console.log('User signed out.');
+					});
+				}
+			</script>
+		<% } %>
+			<button onclick="logout()">Google Logout</button>
 		</section>
+		<!-- 페이스북 로그인을 했을 경우 -->
 		<section id="footer" class="w3-container w3-padding-32">
 			<ul class="icons">
 				<li>
@@ -70,22 +91,11 @@
 			</ul>
 		</section>
 	</div>
-	<script>
-	function sidebarOpen() {
-		document.getElementById("mainSidebar").style.display="block";
-		document.getElementById("mainOverlay").style.display="block";
-	}
-	function sidebarClose() {
-		document.getElementById("mainSidebar").style.display="none";
-		document.getElementById("mainOverlay").style.display="none";
-	}
-	</script>
 	<script src="/assets/js/jquery.min.js"></script>
 	<script src="/assets/js/jquery.scrolly.min.js"></script>
 	<script src="/assets/js/browser.min.js"></script>
 	<script src="/assets/js/breakpoints.min.js"></script>
 	<script src="/assets/js/util.js"></script>
 	<script src="/assets/js/main.js"></script>
-	<script></script>
 </body>
 </html>

@@ -1,83 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ page import="poly.util.CmmUtil" %>
-<%@ page import="poly.dto.NoticeDTO" %>
-<%@ page import="java.util.List"%>   
-<%@ page import="java.util.ArrayList"%> 
-<%@ page import="java.util.HashMap"%>    
-<%
-session.setAttribute("SESSION_USER_ID", "USER01"); //¼¼¼Ç °­Á¦ Àû¿ë, ·Î±×ÀÎµÈ »óÅÂ·Î º¸¿©ÁÖ±â À§ÇÔ
-
-List<NoticeDTO> rList =	(List<NoticeDTO>)request.getAttribute("rList");
-
-//°Ô½ÃÆÇ Á¶È¸ °á°ú º¸¿©ÁÖ±â
-if (rList==null){
-	rList = new ArrayList<NoticeDTO>();
-	
-}
-
-%>        
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°øÁö ¸®½ºÆ®</title>
-<script type="text/javascript">
-
-//»ó¼¼º¸±â ÀÌµ¿
-function doDetail(seq){
-	location.href="/notice/NoticeInfo.do?nSeq="+ seq;
-}
-
-</script>	
-</head>
-<body>
-<h2>°øÁö»çÇ×</h2>
-<hr/>
-<br/>
-
-<table border="1" width="600px">
-<tr>
-	<td width="100" align="center">¼ø¹ø</td>
-	<td width="200" align="center">Á¦¸ñ</td>
-	<td width="100" align="center">Á¶È¸¼ö</td>
-	<td width="100" align="center">µî·ÏÀÚ</td>
-	<td width="100" align="center">µî·ÏÀÏ</td>
-</tr>
-<%
-for (int i=0;i<rList.size();i++){
-	NoticeDTO rDTO = rList.get(i);
-
-	if (rDTO==null){
-		rDTO = new NoticeDTO();
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SIMPL'Y BOT - ê³µì§€ì‚¬í•­</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="/assets/css/main.css">
+<style>
+	* {
+		margin : 0px;
+		padding : 0px;
 	}
-	
-%>
-<tr>
-	<td align="center">
-	<%
-	//°øÁö±ÛÀÌ¶ó¸é, [°øÁö]Ç¥½Ã 
-	if (CmmUtil.nvl(rDTO.getNotice_yn()).equals("1")){
-		out.print("<b>[°øÁö]</b>");
+	html, body {
+	}
+	.mainScreen {
+		height : 100%;
+		background-color : #4686a0;
+		color : rgba(255, 255, 255, 0.75);
+		background-image : url(/assets/css/images/overlay2.png), url(/assets/css/images/overlay3.svg), linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+		background-position : top left, center center, center center;
+		background-size : auto, cover, cover;
+		overflow : hidden;
+		position : relative;
+		text-align : center;
+	}
+	body,h1,h2,h3,h4,h5 {
+		font-family: "Raleway", sans-serif
+	}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:375px">
+	<%@ include file="../top.jsp" %>
+	<div class="mainScreen">
 		
-	//°øÁö±ÛÀÌ ¾Æ´Ï¶ó¸é, ±Û¹øÈ£ º¸¿©ÁÖ±â 		
-	}else{
-		out.print(CmmUtil.nvl(rDTO.getNotice_seq()));
-			
-	}
-	%></td>
-	<td align="center">
-		<a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getNotice_seq())%>');">
-		<%=CmmUtil.nvl(rDTO.getTitle()) %></a>
-	</td>
-	<td align="center"><%=CmmUtil.nvl(rDTO.getRead_cnt()) %></td>
-	<td align="center"><%=CmmUtil.nvl(rDTO.getUser_name()) %></td>
-	<td align="center"><%=CmmUtil.nvl(rDTO.getReg_dt()) %></td>
-</tr>
-<%
-}
-%>
-</table>
-<a href="/notice/NoticeReg.do">[±Û¾²±â]</a>
+	</div>
 </body>
 </html>
