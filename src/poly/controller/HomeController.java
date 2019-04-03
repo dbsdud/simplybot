@@ -41,6 +41,22 @@ public class HomeController {
 		return "redirect:/home.do";
 	}
 	
+	// 페북 로그인
+	@RequestMapping(value="/auth/facebook/callback")
+	public String facebookCallback(HttpServletRequest req, HttpSession session) throws Exception {
+		String f_name = CmmUtil.nvl(req.getParameter("f_name"));
+		String f_id = CmmUtil.nvl(req.getParameter("f_id"));
+		String f_token = CmmUtil.nvl(req.getParameter("f_token"));
+		
+		session.setAttribute("f_name", f_name);
+		session.setAttribute("f_id", f_id);
+		session.setAttribute("f_token", f_token);
+		
+		log.info(" f_name : " + f_name);
+		log.info(" f_id : " + f_id);
+		log.info(" f_token : " + f_token);
+		return "redirect:/home.do";
+	}
 	// 로그아웃
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session) throws Exception {
