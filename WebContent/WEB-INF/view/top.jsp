@@ -6,32 +6,45 @@
 	String g_name = CmmUtil.nvl((String)session.getAttribute("g_name"));
 	String g_email = CmmUtil.nvl((String)session.getAttribute("g_email"));
 	String g_image = CmmUtil.nvl((String)session.getAttribute("g_image"));
-	String g_token = CmmUtil.nvl((String)session.getAttribute("g_token"));
 	/* 페이스북 유저 정보 */
 	String f_name = CmmUtil.nvl((String)session.getAttribute("f_name"));
 	String f_token = CmmUtil.nvl((String)session.getAttribute("f_token"));
+	/* 카카오 */
+	String nickname = CmmUtil.nvl((String)session.getAttribute("nickname"));
+	String profle_image = CmmUtil.nvl((String)session.getAttribute("profle_image"));
+	String thumbnail_image = CmmUtil.nvl((String)session.getAttribute("thumbnail_image"));
+	String email = CmmUtil.nvl((String)session.getAttribute("email"));
 %>
 <!-- Google Login & Logout -->
 <script src="/assets/js/hello.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/api.js"></script>
-<meta name="google-signin-client_id" content="1080260707358-fhghris05edjc684dep4c8uk5tvje9hc.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="1080260707358-c89n5ot1hhgh515iopmclp3cql4f0f2a.apps.googleusercontent.com">
 <script>
 gapi.load('auth2', function(){
 	gapi.auth2.init();
 });
 </script>
+<!-- kakao Login -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- navbar -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:3;width:300px;font-weight:bold" id="mainSidebar">
+<nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:9;width:300px;font-weight:bold" id="mainSidebar">
 	<br>
-	<h3 class="w3-padding-64 w3-center"><b>SIMPL'Y BOT</b></h3>
-	<a href="#" onclick="sidebarClose()" class="w3-bar-item w3-button">SIGN IN</a>
+	<h3 class="w3-padding-64 w3-center"><b><a href="/home.do" style="text-decoration: none;">SIMPL'Y BOT</a></b></h3>
+	<!-- <a href="#" onclick="sidebarClose()" class="w3-bar-item w3-button">SIGN IN</a> -->
+	<% if(!"".equals(nickname)) { %>
+	<a href="#" class="w3-bar-item w3-button"><img src="<%= thumbnail_image %>"/></a>
+	<a href="#" onclick="sidebarClose()" class="w3-bar-item w3-button">MY PAGE</a>
+	<% } else if(!"".equals(g_name)) { %>
+	<a href="#" class="w3-bar-item w3-button"><img src="<%= g_image %>"/></a>
+	<a href="#" onclick="sidebarClose()" class="w3-bar-item w3-button">MY PAGE</a>
+	<% } %>
 	<a href="/notice/noticeList.do" onclick="sidebarClose()" class="w3-bar-item w3-button">NOTICE</a>
 	<a href="#" onclick="sidebarClose()" class="w3-bar-item w3-button">CONTACT</a>
 	<a href="javascript:void(0)" onclick="sidebarClose()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
 </nav>
-<header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
-	<span class="w3-left w3-padding">SIMPL'Y BOT</span>
+<header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16" style="z-index: 8;">
+	<span class="w3-left w3-padding"><a href="/home.do" style="text-decoration: none;">SIMPL'Y BOT</a></span>
 	<a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="sidebarOpen()">☰</a>
 </header>
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="sidebarClose()" style="cursor:pointer" title="close side menu" id="mainOverlay"></div>

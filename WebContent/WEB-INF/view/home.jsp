@@ -24,7 +24,7 @@
 		background-image : url(/assets/css/images/overlay2.png), url(/assets/css/images/overlay3.svg), linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
 		background-position : top left, center center, center center;
 		background-size : auto, cover, cover;
-		overflow : hidden;
+		/* overflow : hidden; */
 		position : relative;
 		text-align : center;
 	}
@@ -32,9 +32,9 @@
 		font-family: "Raleway", sans-serif
 	}
 </style>
-<body class="w3-light-grey w3-content" style="max-width:1600px; max-height: 100%;">
+<body class="w3-light-grey w3-content" style="max-width:1600px;">
 	<%@include file="top.jsp"%>
-	<div class="w3-main mainScreen" style="margin-left:300px; max-height: 100%;">
+	<div class="w3-main mainScreen" style="margin-left:300px;">
 		<div class="w3-hide-large" style="margin-top: 65px;"></div>
 		<section id="header" style="max-height: 80%; height: 100%;">
 			<div class="inner">
@@ -52,7 +52,7 @@
 			</div>
 			<div class="inner" style="margin-top:20px;">
 				<!-- 구글 로그인 버튼 -->
-				<% if("".equals(g_name)) { %>
+				<% if("".equals(g_name) && "".equals(nickname)) { %>
 				<div class="g-signin2" data-onsuccess="onSignIn" data-width="240" data-height="40" data-longtitle="true" style="display: -webkit-inline-box;"></div>
 				<script>
 					function onSignIn(googleUser) {
@@ -71,11 +71,94 @@
 					}
 				</script>
 				<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+				<!-- 카카오 로그인 버튼 -->
+				<div class="inner" style="margin-top: 20px;">
+					<!-- <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="240" style="cursor: pointer;" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=ddb395a2840518c533a503811ad7686a&redirect_uri=http://localhost:8080/auth/kakao/callback.do&response_type=code'"/> -->
+					<a id="custom-login-btn" href="javascript:loginWithKakao()"> <!-- 여기 닫으면 작동 안함 -->
+					<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="240" />
+					<a href="http://developers.kakao.com/logout"></a>
+				</div>
+				<script type='text/javascript'>
+						//<![CDATA[
+						// 사용할 앱의 JavaScript 키를 설정해 주세요.
+						Kakao.init('c47b0dd7403b357161a42ad574a65fa9');
+						function loginWithKakao(){
+							var kakao_id = '', profile_image = '', thumbnail_image='', nickname='', email='';
+							// 카카오 로그인 버튼을 생성합니다.
+							Kakao.Auth.login({
+								success : function(authObj) {
+									// 로그인 성공시, API를 호출합니다.
+									Kakao.API.request({
+										url: '/v2/user/me',
+										success: function(res){
+											/* alert(JSON.stringify(res)); */
+											kakao_id = JSON.stringify(res.id);
+											nickname = JSON.stringify(res.properties.nickname);
+											profile_image = JSON.stringify(res.properties.profile_image);
+											thumbnail_image = JSON.stringify(res.properties.thumbnail_image);
+											email = JSON.stringify(res.kakao_account.email);
+											console.log(" kakao_id : " + JSON.stringify(res.id));
+											console.log(" nickname : " + JSON.stringify(res.properties.nickname));
+											console.log(" profle_image: " + JSON.stringify(res.properties.profile_image));
+											console.log(" thumbnail_image : " + JSON.stringify(res.properties.thumbnail_image));
+											console.log(" email : " + JSON.stringify(res.kakao_account.email));
+											location.href='/auth/kakao/callback.do?kakao_id='+kakao_id+'&nickname='+nickname+'&profile_image='+profile_image+'&thumbnail_image='+thumbnail_image+'&email='+email;
+										},
+										fail: function(error){
+											alert(JSON.stringify(error));
+										}
+									});
+									/* alert(JSON.stringify(authObj)); */
+								},
+								fail : function(err) {
+									alert(JSON.stringify(err));
+								}
+							});
+						};
+						//]]>
+					</script>
 				<!-- 구글 로그아웃 버튼 -->
+				<% } else if (!"".equals(g_name) && "".equals(nickname)) { %>
+				<a class="nav-link" href="#"><%="반갑습니다! " + g_name + "님" %></a>
+				<div class="inner" style="margin-top:20px;">
+					<a href="#" class="button wide primary" style="width:240px;">대화 시작</a>
+				</div>
+				<!-- <div class="inner" style="margin-top:20px;">
+					<a href="#" class="button wide" onclick="myPage();" style="width:240px;">마이페이지</a>
+				</div>
+				<script>
+					function myPage() {
+				        location.href='/myPage.do?g_name='+g_name+'&g_email='+g_email;
+					}
+				</script> -->
+				<div class="inner" style="margin-top:20px;">
+					<a href="#" onclick="signOut();" class="button wide" style="width:240px;">Sign out</a>
+				</div>
+				<script>
+					function signOut() {
+						var auth2 = gapi.auth2.getAuthInstance();
+						auth2.signOut().then(function() {
+							console.log('User signed out.');
+							location.href='/logout.do';
+						});
+					}
+				</script>
 				<% } else { %>
-				<a class="nav-link" href="#"><%= g_name + "님 환영합니다." %></a>
-				<br>
-				<a href="#" onclick="signOut();" class="button">Sign out</a>
+				<a class="nav-link" href="#"><%="반갑습니다! " + nickname + "님" %></a>
+				<div class="inner" style="margin-top:20px;">
+					<a href="#" class="button wide primary" style="width:240px;">대화 시작</a>
+				</div>
+				<div class="inner" style="margin-top:20px;">
+					<a href="#" class="button wide" onclick="myPage();" style="width:240px;">마이페이지</a>
+				</div>
+				<%-- <script>
+					function myPage() {
+				        location.href='/myPage.do?nickname='+<%= nickname %>+'&email='+<%= email %>;
+					}
+				</script> --%>
+				<div class="inner" style="margin-top:20px;">
+					<a href="#" onclick="signOut();" class="button wide" style="width:240px;">Sign out</a>
+				</div>
 				<script>
 					function signOut() {
 						var auth2 = gapi.auth2.getAuthInstance();
@@ -87,8 +170,8 @@
 				</script>
 				<% } %>
 			</div>
-			<div class="inner" style="margin-top:20px;">
-				<!-- 페이스북 로그인 버튼 -->
+				<!-- 페이스북 로그인 버튼 / 리다이렉트 문제로 막아 놓음 -->
+			<!-- <div class="inner" style="margin-top:20px;">
 				<div class="fb-login-button" data-width="240" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false"></div>
 				<div id="fb-root"></div>
 				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.2&appId=374979163093103&autoLogAppEvents=1"></script>
@@ -121,7 +204,8 @@
 			                        console.log('Successful login for: ' + response.id);
 			                        f_name = response.name;
 			                        f_id = response.id;
-			                        /* location.href='/auth/facebook/callback.do?f_name='+f_name+'&f_id='+f_id+'&f_token='+f_token; */
+			                        // 리다이렉트 문제로 막아 놓음
+			                        // location.href='/auth/facebook/callback.do?f_name='+f_name+'&f_id='+f_id+'&f_token='+f_token;
 			                    });
 			                }
 			            }
@@ -137,14 +221,9 @@
 						fjs.parentNode.insertBefore(js, fjs);
 					}(document, 'script', 'facebook-jssdk'));
 				</script>
-			</div>
-			<% if(!"".equals("g_name")||!"".equals("f_name")) { %>
-			<div class="inner" style="margin-top: 20px;">
-				<a href="#" class="button wide primary" style="width:240px;">대화 시작</a>
-			</div>
-			<% } %>
+			</div> -->
 		</section>
-		<div class="w3-hide-large" style="margin-top: -65px;"></div>
+		<!-- <div class="w3-hide-large" style="margin-top: -65px;"></div> -->
 		<section id="footer" class="w3-container w3-padding-32" style="max-height: 20%; height: 100%; position: relative;">
 			<ul class="icons">
 				<li>
@@ -173,7 +252,6 @@
 				<li>Design : duddl425</li>
 			</ul>
 		</section>
-		
 	</div>
 	<script src="/assets/js/jquery.min.js"></script>
 	<script src="/assets/js/jquery.scrolly.min.js"></script>

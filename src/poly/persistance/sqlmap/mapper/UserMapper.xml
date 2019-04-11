@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.UserMapper">
+	<!-- 카카오 회원조회 -->
+	<select id="getKakaoUser" parameterType="UserDTO" resultType="UserDTO">
+		SELECT 
+			USER_NO as user_no,
+			NICKNAME as nickname,
+			EMAIL as email,
+			PROFILE_IMAGE as profile_image,
+			THUMBNAIL_IMAGE as thumbnail_image
+		FROM
+			USER
+		WHERE
+			KAKAO_USER_YN = 1
+		AND
+			USER_STATE = 1
+		AND
+			EMAIL = #{email}
+	</select>
+	<!-- 카카오 회원가입 -->
+	<insert id="insertKakaoUser" parameterType="UserDTO">
+		INSERT INTO USER(
+			KAKAO_USER_YN,
+			NICKNAME,
+			EMAIL,
+			PROFILE_IMAGE,
+			THUMBNAIL_IMAGE,
+			REG_DATE,
+			USER_STATE
+		) VALUES (
+			1,
+			#{nickname},
+			#{email},
+			#{profile_image},
+			#{thumbnail_image},
+			NOW(),
+			1
+		)
+		<selectKey resultType="string" keyProperty="user_no" order="AFTER">
+			SELECT last_insert_id() FROM DUAL;
+		</selectKey>
+	</insert>
+	<update id="updateKakaoUserRegNo" parameterType="UserDTO"><!-- 카카오 유저  regNo 저장 -->
+		UPDATE USER
+		SET REG_NO = #{reg_no}
+		WHERE USER_NO = #{reg_no}
+	</update>
+	<update id="updateKakaoUserImage" parameterType="UserDTO">
+		UPDATE USER
+		SET 
+			PROFILE_IMAGE = #{profile_image},
+			THUMBNAIL_IMAGE = #{thumbnail_image}
+		WHERE USER_NO = #{user_no}
+	</update>
+	<!-- 구글 회원조회 -->
+	<select id="getGoogleUser" parameterType="UserDTO" resultType="UserDTO">
+		SELECT 
+			USER_NO as user_no,
+			G_NAME as g_name,
+			G_EMAIL as g_email,
+			G_IMAGE as g_image
+		FROM
+			USER
+		WHERE
+			GOOGLE_USER_YN = 1
+		AND
+			USER_STATE = 1
+	</select>
+	<!-- 구글 회원가입 -->
+	<insert id="insertGoogleUser" parameterType="UserDTO">
+		INSERT INTO USER(
+			GOOGLE_USER_YN,
+			G_NAME,
+			G_EMAIL,
+			G_IMAGE,
+			REG_DATE,
+			USER_STATE
+		) VALUES (
+			1,
+			#{g_name},
+			#{g_email},
+			#{g_image},
+			NOW(),
+			1
+		)
+		<selectKey resultType="string" keyProperty="user_no" order="AFTER">
+			SELECT last_insert_id() FROM DUAL;
+		</selectKey>
+	</insert>
+	<update id="updateGoogleUserRegNo" parameterType="UserDTO"><!-- 카카오 유저  regNo 저장 -->
+		UPDATE USER
+		SET REG_NO = #{reg_no}
+		WHERE USER_NO = #{reg_no}
+	</update>
+</mapper>
