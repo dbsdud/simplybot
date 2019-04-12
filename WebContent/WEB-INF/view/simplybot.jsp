@@ -4,13 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>SIMPL'Y BOT - 마이페이지</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/timeline.css">
+<title>SIMPL'Y BOT - 대화</title>
 <style>
 	* {
 		margin : 0px;
@@ -50,14 +50,13 @@
 	<%@include file="top.jsp"%>
 	<div class="w3-main mainScreen" style="margin-left:300px;">
 		<div class="w3-hide-large" style="margin-top: 65px;">
-		
+			<iframe
+			    allow="microphone;"
+			    width="350"
+			    height="430"
+			    src="https://console.dialogflow.com/api-client/demo/embedded/c65d7081-1eb2-4183-8429-89d8020cd485">
+			</iframe>
 		</div>
 	</div>
-	<script src="/assets/js/jquery.min.js"></script>
-	<script src="/assets/js/jquery.scrolly.min.js"></script>
-	<script src="/assets/js/browser.min.js"></script>
-	<script src="/assets/js/breakpoints.min.js"></script>
-	<script src="/assets/js/util.js"></script>
-	<script src="/assets/js/main.js"></script>
 </body>
 </html>

@@ -46,6 +46,7 @@
 		height: !important 600px;
 	}
 </style>
+</head>
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
 	<%@ include file="../top.jsp" %>
 	<div class="w3-main mainScreen" style="margin-left:300px;">
@@ -72,7 +73,7 @@
 				</script>
 			</div>
 		</section>
-		<div class="w3-hide-large" style="margin-top: 0px;"></div>
+		<div class="w3-hide-large" style="margin-top: 65px;"></div>
 		<section id="footer" class="w3-container w3-padding-32" style="max-height: 20%; height: 100%; position: relative;">
 			<ul class="icons">
 				<li>

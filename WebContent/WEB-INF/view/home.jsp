@@ -32,9 +32,13 @@
 		font-family: "Raleway", sans-serif
 	}
 </style>
+</head>
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
 	<%@include file="top.jsp"%>
 	<div class="w3-main mainScreen" style="margin-left:300px;">
+		<%-- <form name="myPage" style="display: none;">
+			<input type="hidden" id="user_no" name="user_no" value="<%= user_no %>" />
+		</form> --%>
 		<div class="w3-hide-large" style="margin-top: 65px;"></div>
 		<section id="header" style="max-height: 80%; height: 100%;">
 			<div class="inner">
@@ -121,16 +125,8 @@
 				<% } else if (!"".equals(g_name) && "".equals(nickname)) { %>
 				<a class="nav-link" href="#"><%="반갑습니다! " + g_name + "님" %></a>
 				<div class="inner" style="margin-top:20px;">
-					<a href="#" class="button wide primary" style="width:240px;">대화 시작</a>
+					<a href="javascript:void(0)" onclick="goChatBot()" class="button wide primary" style="width:240px;">대화 시작</a>
 				</div>
-				<!-- <div class="inner" style="margin-top:20px;">
-					<a href="#" class="button wide" onclick="myPage();" style="width:240px;">마이페이지</a>
-				</div>
-				<script>
-					function myPage() {
-				        location.href='/myPage.do?g_name='+g_name+'&g_email='+g_email;
-					}
-				</script> -->
 				<div class="inner" style="margin-top:20px;">
 					<a href="#" onclick="signOut();" class="button wide" style="width:240px;">Sign out</a>
 				</div>
@@ -143,19 +139,12 @@
 						});
 					}
 				</script>
+				<!-- 카카오 로그아웃 버튼 -->
 				<% } else { %>
 				<a class="nav-link" href="#"><%="반갑습니다! " + nickname + "님" %></a>
 				<div class="inner" style="margin-top:20px;">
-					<a href="#" class="button wide primary" style="width:240px;">대화 시작</a>
+					<a href="javascript:void(0)" onclick="goChatBot()" class="button wide primary" style="width:240px;">대화 시작</a>
 				</div>
-				<div class="inner" style="margin-top:20px;">
-					<a href="#" class="button wide" onclick="myPage();" style="width:240px;">마이페이지</a>
-				</div>
-				<%-- <script>
-					function myPage() {
-				        location.href='/myPage.do?nickname='+<%= nickname %>+'&email='+<%= email %>;
-					}
-				</script> --%>
 				<div class="inner" style="margin-top:20px;">
 					<a href="#" onclick="signOut();" class="button wide" style="width:240px;">Sign out</a>
 				</div>

@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import poly.dto.UserDTO;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
@@ -56,6 +58,7 @@ public class HomeController {
 			int updateResult = userService.updateGoogleUserRegNo(uDTO2);
 			log.info(this.getClass() + " updateResult : " + updateResult);
 		} else {
+			session.setAttribute("user_no", getGoogleUser.getUser_no());
 			session.setAttribute("g_name", g_name);
 			session.setAttribute("g_image", g_image);
 			session.setAttribute("g_email", g_email);
@@ -82,10 +85,6 @@ public class HomeController {
 		uDTO.setEmail(email);
 		uDTO.setProfile_image(profile_image);
 		uDTO.setThumbnail_image(thumbnail_image);
-		if("".equals(uDTO.getProfile_image()) && "".equals(uDTO.getThumbnail_image())) {
-			uDTO.setProfile_image(null);
-			uDTO.setThumbnail_image(null);
-		}
 		// 기존정보확인
 		UserDTO getKakaoUser = userService.getKakaoUser(uDTO);
 		
@@ -103,6 +102,7 @@ public class HomeController {
 			log.info(this.getClass() + " updateResult : " + updateResult);
 			log.info(this.getClass() + " updateKakaoUserImage : " + updateKakaoUserImage);
 		} else {
+			session.setAttribute("user_no", getKakaoUser.getUser_no());
 			session.setAttribute("nickname", uDTO.getNickname());
 			session.setAttribute("profile_image", uDTO.getProfile_image());
 			session.setAttribute("thumbnail_image", uDTO.getThumbnail_image());
@@ -134,13 +134,12 @@ public class HomeController {
 		session.invalidate();
 		return "redirect:/home.do";
 	}
-	
-	@RequestMapping(value="/myPage")
+	// 마이페이지 이동
+	@RequestMapping(value="/myPage", method=RequestMethod.POST)
 	public String myPage(HttpServletRequest req, HttpServletResponse res, HttpSession session, Model model) throws Exception {
 		log.info(this.getClass() + " myPage start!");
-		
-		
-		
+		String user_no = CmmUtil.nvl(req.getParameter("user_no"));
+		log.info(this.getClass() + " user_no : " + user_no);
 		log.info(this.getClass() + " myPage end!");
 		return "/myPage";
 	}
