@@ -85,7 +85,7 @@
 				<script type='text/javascript'>
 						//<![CDATA[
 						// 사용할 앱의 JavaScript 키를 설정해 주세요.
-						Kakao.init('c47b0dd7403b357161a42ad574a65fa9');
+						Kakao.init('c47b0dd7403b357161a42ad574a65fa9'); // API Key
 						function loginWithKakao(){
 							var kakao_id = '', profile_image = '', thumbnail_image='', nickname='', email='';
 							// 카카오 로그인 버튼을 생성합니다.

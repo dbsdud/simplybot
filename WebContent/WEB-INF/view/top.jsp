@@ -34,14 +34,16 @@ gapi.load('auth2', function(){
 		f.action = "/myPage.do";
 		f.method = "post";
 		f.submit();
-	}
+	};
+</script>
+<script>
 	function goChatBot(user_no = 0){
 		var f = document.myPage;
 		f.user_no.value = user_no;
 		f.action = "/simplybot.do";
 		f.method = "post";
 		f.submit();
-	}
+	};
 </script>
 <!-- kakao Login -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>

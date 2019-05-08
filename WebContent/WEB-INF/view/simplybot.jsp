@@ -10,6 +10,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/timeline.css">
+<!-- required for basic layout -->
+<link rel="stylesheet" href="/assets/css/botui.min.css">
+
+<!-- default theme - you can create your own theme -->
+<link rel="stylesheet" href="/assets/css/botui-theme-default.css">
+
+<!-- Vue - BotUI requires Vue to be present in page -->
+<script src="/assets/js/vue.min.js"></script>
+
+<!-- BotUI - main file -->
+<script src="/assets/js/botui.min.js"></script>
 <title>SIMPL'Y BOT - 대화</title>
 <style>
 	* {
@@ -49,13 +60,16 @@
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
 	<%@include file="top.jsp"%>
 	<div class="w3-main mainScreen" style="margin-left:300px;">
-		<div class="w3-hide-large" style="margin-top: 65px;">
-			<iframe
-			    allow="microphone;"
-			    width="350"
-			    height="430"
-			    src="https://console.dialogflow.com/api-client/demo/embedded/c65d7081-1eb2-4183-8429-89d8020cd485">
-			</iframe>
+		<div class="w3-hide-large" style="margin-top: 65px;"></div>
+		<div id="my-botui-app">
+			<bot-ui>
+				<iframe
+		    		allow="microphone;"
+		    		width="350"
+		    		height="430"
+		    		src="https://console.dialogflow.com/api-client/demo/embedded/c65d7081-1eb2-4183-8429-89d8020cd485">
+				</iframe>
+			</bot-ui>
 		</div>
 	</div>
 </body>
