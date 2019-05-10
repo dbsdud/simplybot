@@ -45,24 +45,19 @@
 		height: !important 600px;
 	}
 </style>
-<script>
-function sendSurveyValue() {
-	
-}
-</script>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
 	<%@include file="top.jsp"%>
 	<div class="w3-main mainScreen" style="margin-left:300px;">
 		<div class="w3-hide-large" style="margin-top: 65px;"></div>
-		<div id="my-landbot"></div>
-		<script src="https://static.landbot.io/landbot-widget/landbot-widget-1.0.0.js"></script>
-		<script>
-			var myLandbotFrame = new LandbotFrameWidget({
-				index: 'https://landbot.io/u/H-173490-FLURVEZ18KGP1PIX/index.html',
-				container: '#my-landbot',
-			});
-		</script>
+		<iframe
+		   	allow="microphone;"
+		   	width="350"
+		   	height="430"
+		   	src="https://console.dialogflow.com/api-client/demo/embedded/c65d7081-1eb2-4183-8429-89d8020cd485">
+		</iframe>
+		
+		<!-- 챗봇을 만들어 보자 -->
 	</div>
 </body>
 </html>

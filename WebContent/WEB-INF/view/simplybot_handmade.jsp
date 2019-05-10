@@ -10,6 +10,18 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/timeline.css">
+<link rel="stylesheet" href="/assets/css/chat.css">
+<link rel="stylesheet" href="/assets/css/chats.css">
+<link rel="stylesheet" href="/assets/css/find.css">
+<link rel="stylesheet" href="/assets/css/globals.css">
+<link rel="stylesheet" href="/assets/css/header.css">
+<link rel="stylesheet" href="/assets/css/mobile.css">
+<link rel="stylesheet" href="/assets/css/more.css">
+<link rel="stylesheet" href="/assets/css/navigation.css">
+<link rel="stylesheet" href="/assets/css/profile.css">
+<link rel="stylesheet" href="/assets/css/reset.css">
+<link rel="stylesheet" href="/assets/css/search-bar.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 <title>SIMPL'Y BOT - 대화</title>
 <style>
 	* {
@@ -45,24 +57,31 @@
 		height: !important 600px;
 	}
 </style>
-<script>
-function sendSurveyValue() {
-	
-}
-</script>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
 	<%@include file="top.jsp"%>
 	<div class="w3-main mainScreen" style="margin-left:300px;">
 		<div class="w3-hide-large" style="margin-top: 65px;"></div>
-		<div id="my-landbot"></div>
-		<script src="https://static.landbot.io/landbot-widget/landbot-widget-1.0.0.js"></script>
-		<script>
-			var myLandbotFrame = new LandbotFrameWidget({
-				index: 'https://landbot.io/u/H-173490-FLURVEZ18KGP1PIX/index.html',
-				container: '#my-landbot',
-			});
-		</script>
+		<!-- 챗봇을 만들어 보자 -->
+		<div class="chat">
+			<div class="chat__message chat__message--to-me">
+				<img src="/assets/css/images/avatar.jpg" class="chat__message-avatar">
+				<div class="chat__message-center">
+					<h3 class="chat__message-username">Simply'Bot</h3>
+					<span class="chat__message-body" style="color: black;">
+						안녕하세요. 인공지능 심리상담가입니다. 고민이 무엇인지 말씀해주세요!
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="type-message">
+			<div class="type-message__input">
+				<input type="text" style="height: 2.25em; color: black; background: white;">
+			</div>
+			<span class="send-message">
+				<i class="fa fa-lg fa-paper-plane"></i>
+			</span>
+		</div>
 	</div>
 </body>
 </html>

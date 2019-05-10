@@ -41,6 +41,8 @@ gapi.load('auth2', function(){
 		var f = document.myPage;
 		f.user_no.value = user_no;
 		f.action = "/simplybot.do";
+		/* f.action = "/simplybot_dialogflow.do"; */
+		/* f.action = "/simplybot_handmade.do"; */
 		f.method = "post";
 		f.submit();
 	};
