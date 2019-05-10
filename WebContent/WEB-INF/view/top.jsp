@@ -4,6 +4,7 @@
 <%
 	/* 공통정보 */
 	String user_no = CmmUtil.nvl((String)session.getAttribute("user_no"));
+	String user_id = CmmUtil.nvl((String)session.getAttribute("user_id"));
 	/* 구글 유저 정보 */
 	String g_name = CmmUtil.nvl((String)session.getAttribute("g_name"));
 	String g_email = CmmUtil.nvl((String)session.getAttribute("g_email"));
@@ -27,7 +28,7 @@ gapi.load('auth2', function(){
 	gapi.auth2.init();
 });
 </script>
-<script>
+<!-- <script>
 	function goMyPage(user_no = 0){
 		var f = document.myPage;
 		f.user_no.value = user_no;
@@ -46,7 +47,7 @@ gapi.load('auth2', function(){
 		f.method = "post";
 		f.submit();
 	};
-</script>
+</script> -->
 <!-- kakao Login -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- navbar -->
@@ -58,10 +59,12 @@ gapi.load('auth2', function(){
 	</form>
 	<% if(!"".equals(nickname)) { %>
 	<a href="#" class="w3-bar-item w3-button"><img src="<%= thumbnail_image %>"/></a>
-	<a href="#" class="w3-bar-item w3-button" onclick="goMyPage(<%= user_no %>);">MY PAGE</a>
+	<%-- <a href="#" class="w3-bar-item w3-button" onclick="goMyPage(<%= user_no %>);">MY PAGE</a> --%>
+	<a href="/myPage.do?user_id=<%= user_id %>" class="w3-bar-item w3-button">MY PAGE</a>
 	<% } else if(!"".equals(g_name)) { %>
 	<a href="#" class="w3-bar-item w3-button"><img src="<%= g_image %>"/></a>
-	<a href="javascript:void(0)" onclick="goMyPage()" class="w3-bar-item w3-button">MY PAGE</a>
+	<!-- <a href="javascript:void(0)" onclick="goMyPage()" class="w3-bar-item w3-button">MY PAGE</a> -->
+	<a href="/myPage.do?user_id=<%= user_id %>" class="w3-bar-item w3-button">MY PAGE</a>
 	<% } %>
 	<a href="/notice/noticeList.do" onclick="sidebarClose()" class="w3-bar-item w3-button">NOTICE</a>
 	<a href="#" onclick="sidebarClose()" class="w3-bar-item w3-button">CONTACT</a>

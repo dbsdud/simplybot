@@ -28,6 +28,11 @@ public class UserService implements IUserService{
 	public int updateKakaoUserRegNo(UserDTO uDTO2) throws Exception {
 		return userMapper.updateKakaoUserRegNo(uDTO2);
 	}
+	// 카카오 유저 user_id 생성
+		@Override
+		public int updateKakaoUserId(UserDTO uDTO2) throws Exception {
+			return userMapper.updateKakaoUserId(uDTO2);
+		}
 	// 카카오 유저 이미지 업데이트
 	@Override
 	public int updateKakaoUserImage(UserDTO uDTO2) throws Exception {
@@ -47,6 +52,11 @@ public class UserService implements IUserService{
 	@Override
 	public int updateGoogleUserRegNo(UserDTO uDTO2) throws Exception {
 		return userMapper.updateGoogleUserRegNo(uDTO2);
+	}
+	// 구글 유저 user_id 생성
+	@Override
+	public int updateGoogleUserId(UserDTO uDTO2) throws Exception {
+		return userMapper.updateGoogleUserId(uDTO2);
 	}
 		
 }

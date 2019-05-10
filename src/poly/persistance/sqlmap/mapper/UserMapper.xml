@@ -8,7 +8,8 @@
 			NICKNAME as nickname,
 			EMAIL as email,
 			PROFILE_IMAGE as profile_image,
-			THUMBNAIL_IMAGE as thumbnail_image
+			THUMBNAIL_IMAGE as thumbnail_image,
+			USER_ID as user_id
 		FROM
 			USER
 		WHERE
@@ -46,6 +47,11 @@
 		SET REG_NO = #{reg_no}
 		WHERE USER_NO = #{reg_no}
 	</update>
+	<update id="updateKakaoUserId" parameterType="UserDTO"><!-- 카카오 유저 user_id 생성 -->
+		UPDATE USER
+		SET USER_ID = #{user_id}
+		WHERE USER_NO = #{reg_no}
+	</update>
 	<update id="updateKakaoUserImage" parameterType="UserDTO">
 		UPDATE USER
 		SET 
@@ -59,7 +65,8 @@
 			USER_NO as user_no,
 			G_NAME as g_name,
 			G_EMAIL as g_email,
-			G_IMAGE as g_image
+			G_IMAGE as g_image,
+			USER_ID as user_id
 		FROM
 			USER
 		WHERE
@@ -90,9 +97,14 @@
 			SELECT last_insert_id() FROM DUAL;
 		</selectKey>
 	</insert>
-	<update id="updateGoogleUserRegNo" parameterType="UserDTO"><!-- 카카오 유저  regNo 저장 -->
+	<update id="updateGoogleUserRegNo" parameterType="UserDTO"><!-- 구글 유저  regNo 저장 -->
 		UPDATE USER
 		SET REG_NO = #{reg_no}
+		WHERE USER_NO = #{reg_no}
+	</update>
+	<update id="updateGoogleUserId" parameterType="UserDTO"><!-- 구글 유저 user_id 생성 -->
+		UPDATE USER
+		SET USER_ID = #{user_id}
 		WHERE USER_NO = #{reg_no}
 	</update>
 </mapper>

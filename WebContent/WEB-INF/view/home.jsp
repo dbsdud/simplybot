@@ -125,7 +125,8 @@
 				<% } else if (!"".equals(g_name) && "".equals(nickname)) { %>
 				<a class="nav-link" href="#"><%="반갑습니다! " + g_name + "님" %></a>
 				<div class="inner" style="margin-top:20px;">
-					<a href="javascript:void(0)" onclick="goChatBot()" class="button wide primary" style="width:240px;">대화 시작</a>
+					<!-- <a href="javascript:void(0)" onclick="goChatBot()" class="button wide primary" style="width:240px;">대화 시작</a> -->
+					<a href="simplybot.do?user_id=<%= user_id %>" class="button wide primary" style="width:240px;">대화 시작</a>
 				</div>
 				<div class="inner" style="margin-top:20px;">
 					<a href="#" onclick="signOut();" class="button wide" style="width:240px;">Sign out</a>
@@ -143,7 +144,8 @@
 				<% } else { %>
 				<a class="nav-link" href="#"><%="반갑습니다! " + nickname + "님" %></a>
 				<div class="inner" style="margin-top:20px;">
-					<a href="javascript:void(0)" onclick="goChatBot()" class="button wide primary" style="width:240px;">대화 시작</a>
+					<!-- <a href="javascript:void(0)" onclick="goChatBot()" class="button wide primary" style="width:240px;">대화 시작</a> -->
+					<a href="simplybot.do?user_id=<%= user_id %>" class="button wide primary" style="width:240px;">대화 시작</a>
 				</div>
 				<div class="inner" style="margin-top:20px;">
 					<a href="#" onclick="signOut();" class="button wide" style="width:240px;">Sign out</a>

@@ -15,16 +15,16 @@ import poly.util.CmmUtil;
 public class ChatController {
 	private Logger log = Logger.getLogger(this.getClass());
 	// 채팅방 이동
-	@RequestMapping(value="/simplybot", method=RequestMethod.POST)
+	@RequestMapping(value="/simplybot")
 	public String simplybot(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
 		log.info(this.getClass() + " SimplyBot Start!");
-		String user_no = CmmUtil.nvl(req.getParameter("user_no"));
-		log.info(this.getClass() + " user_no : " + user_no);
+		String user_id = CmmUtil.nvl(req.getParameter("user_id"));
+		log.info(this.getClass() + " user_id : " + user_id);
 		
 		return "/simplybot";
 	}
 	
-	@RequestMapping(value="/simplybot_dialogflow", method=RequestMethod.POST)
+	/*@RequestMapping(value="/simplybot_dialogflow", method=RequestMethod.POST)
 	public String simplybot_dialogflow(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
 		log.info(this.getClass() + " simplybot_dialogflow Start!");
 		String user_no = CmmUtil.nvl(req.getParameter("user_no"));
@@ -38,7 +38,7 @@ public class ChatController {
 		String user_no = CmmUtil.nvl(req.getParameter("user_no"));
 		
 		return "/simplybot_handmade";
-	}
+	}*/
 	
 	@RequestMapping(value="/simplybot/anxiety", method=RequestMethod.POST)
 	public String anxiety_q1(HttpServletRequest req, HttpServletResponse res) throws Exception {

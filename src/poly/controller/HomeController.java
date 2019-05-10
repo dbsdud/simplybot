@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import poly.dto.UserDTO;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
+import poly.util.SecurityUtil;
 
 @Controller
 public class HomeController {
@@ -52,16 +53,24 @@ public class HomeController {
 		if(getGoogleUser==null) {
 			int insertResult = userService.insertGoogleUser(uDTO);
 			log.info(this.getClass() + " insertResult : " + insertResult);
+			SecurityUtil securityUtil = new SecurityUtil();
+			String user_id = securityUtil.encryptSHA256(uDTO.getUser_no());
+			log.info(this.getClass() + " user_id : " + user_id);
 			UserDTO uDTO2 = new UserDTO();
 			uDTO2.setReg_no(uDTO.getUser_no());
+			uDTO2.setUser_id(user_id);
 			log.info(this.getClass() + " user_no : " + uDTO.getUser_no());
+			log.info(this.getClass() + " user_id : " + uDTO2.getUser_id());
 			int updateResult = userService.updateGoogleUserRegNo(uDTO2);
+			int updateIdResult = userService.updateGoogleUserId(uDTO2);
 			log.info(this.getClass() + " updateResult : " + updateResult);
+			log.info(this.getClass() + " updateIdResult : " + updateIdResult);
 		} else {
 			session.setAttribute("user_no", getGoogleUser.getUser_no());
 			session.setAttribute("g_name", g_name);
 			session.setAttribute("g_image", g_image);
 			session.setAttribute("g_email", g_email);
+			session.setAttribute("user_id", getGoogleUser.getUser_id());
 		}
 		
 		return "redirect:/home.do";
@@ -92,14 +101,20 @@ public class HomeController {
 		if(getKakaoUser==null) {
 			int insertResult = userService.insertKakaoUser(uDTO);
 			log.info(this.getClass() + " insertResult : " + insertResult);
+			SecurityUtil securityUtil = new SecurityUtil();
+			String user_id = securityUtil.encryptSHA256(uDTO.getUser_no());
 			UserDTO uDTO2 = new UserDTO();
 			uDTO2.setReg_no(uDTO.getUser_no());
 			uDTO2.setProfile_image(uDTO.getProfile_image());
 			uDTO2.setThumbnail_image(uDTO.getThumbnail_image());
+			uDTO2.setUser_id(user_id);
 			log.info(this.getClass() + " user_no : " + uDTO.getUser_no());
+			
 			int updateResult = userService.updateKakaoUserRegNo(uDTO2);
+			int updateIdResult = userService.updateKakaoUserId(uDTO2);
 			int updateKakaoUserImage = userService.updateKakaoUserImage(uDTO2);
 			log.info(this.getClass() + " updateResult : " + updateResult);
+			log.info(this.getClass() + " updateIdResult : " + updateIdResult);
 			log.info(this.getClass() + " updateKakaoUserImage : " + updateKakaoUserImage);
 		} else {
 			session.setAttribute("user_no", getKakaoUser.getUser_no());
@@ -107,6 +122,7 @@ public class HomeController {
 			session.setAttribute("profile_image", uDTO.getProfile_image());
 			session.setAttribute("thumbnail_image", uDTO.getThumbnail_image());
 			session.setAttribute("email", uDTO.getEmail());
+			session.setAttribute("user_id", getKakaoUser.getUser_id());
 		}
 	
 		return "redirect:/home.do";
@@ -135,11 +151,11 @@ public class HomeController {
 		return "redirect:/home.do";
 	}
 	// 마이페이지 이동
-	@RequestMapping(value="/myPage", method=RequestMethod.POST)
+	@RequestMapping(value="/myPage")
 	public String myPage(HttpServletRequest req, HttpServletResponse res, HttpSession session, Model model) throws Exception {
 		log.info(this.getClass() + " myPage start!");
-		String user_no = CmmUtil.nvl(req.getParameter("user_no"));
-		log.info(this.getClass() + " user_no : " + user_no);
+		String user_id = CmmUtil.nvl(req.getParameter("user_id"));
+		log.info(this.getClass() + " user_id : " + user_id);
 		log.info(this.getClass() + " myPage end!");
 		return "/myPage";
 	}
