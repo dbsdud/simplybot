@@ -45,11 +45,6 @@
 		height: !important 600px;
 	}
 </style>
-<script>
-function sendSurveyValue() {
-	
-}
-</script>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
 	<%@include file="top.jsp"%>
