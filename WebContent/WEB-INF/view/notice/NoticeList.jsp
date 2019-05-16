@@ -68,8 +68,10 @@
 						/* default_bg_color: {r:255, g:255, b:204}, */
 						timenav_height_percentage: 25
 					}
+					/* timeline = new TL.Timeline('timeline-embed',
+						'https://docs.google.com/spreadsheets/d/1c70AP49mm-K_7bzYVXMaAr99ZbNU_gAYSyZzS9qFdGA/edit#gid=0', additionalOptions); */
 					timeline = new TL.Timeline('timeline-embed',
-						'https://docs.google.com/spreadsheets/d/1c70AP49mm-K_7bzYVXMaAr99ZbNU_gAYSyZzS9qFdGA/edit#gid=0', additionalOptions);
+						'https://docs.google.com/spreadsheets/d/1c70AP49mm-K_7bzYVXMaAr99ZbNU_gAYSyZzS9qFdGA/edit?usp=sharing', additionalOptions);
 				</script>
 			</div>
 		</section>

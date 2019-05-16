@@ -74,6 +74,7 @@ public class HomeController {
 		}
 		
 		return "redirect:/home.do";
+		/*return "redirect:/home.do?user_id=" + getGoogleUser.getUser_id();*/
 	}
 	
 	// 카카오 회원가입
@@ -126,6 +127,7 @@ public class HomeController {
 		}
 	
 		return "redirect:/home.do";
+		/*return "redirect:/home.do?user_id=" + getKakaoUser.getUser_id();*/
 	}
 	
 	// 페북 로그인
