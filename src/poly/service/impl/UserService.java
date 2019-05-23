@@ -1,9 +1,12 @@
 package poly.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import poly.dto.ChatDTO;
 import poly.dto.UserDTO;
 import poly.persistance.mapper.UserMapper;
 import poly.service.IUserService;
@@ -58,5 +61,9 @@ public class UserService implements IUserService{
 	public int updateGoogleUserId(UserDTO uDTO2) throws Exception {
 		return userMapper.updateGoogleUserId(uDTO2);
 	}
-		
+	// 결과페이지
+	@Override
+	public List<ChatDTO> getResultList(ChatDTO cDTO) throws Exception {
+		return userMapper.getResultList(cDTO);
+	}
 }

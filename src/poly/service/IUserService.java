@@ -1,5 +1,8 @@
 package poly.service;
 
+import java.util.List;
+
+import poly.dto.ChatDTO;
 import poly.dto.UserDTO;
 
 public interface IUserService {
@@ -21,4 +24,6 @@ public interface IUserService {
 	public int updateGoogleUserRegNo(UserDTO uDTO2) throws Exception;
 	// 구글 유저 user_id 생성
 	public int updateGoogleUserId(UserDTO uDTO2) throws Exception;
+	// 결과페이지
+	public List<ChatDTO> getResultList(ChatDTO cDTO) throws Exception;
 }

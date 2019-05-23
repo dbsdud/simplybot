@@ -89,7 +89,7 @@
 						function loginWithKakao(){
 							var kakao_id = '', profile_image = '', thumbnail_image='', nickname='', email='';
 							// 카카오 로그인 버튼을 생성합니다.
-							Kakao.Auth.login({
+							Kakao.Auth.loginForm({
 								success : function(authObj) {
 									// 로그인 성공시, API를 호출합니다.
 									Kakao.API.request({
@@ -116,7 +116,8 @@
 								},
 								fail : function(err) {
 									alert(JSON.stringify(err));
-								}
+								},
+								persistAccessToken : false
 							});
 						};
 						//]]>

@@ -1,6 +1,9 @@
 package poly.persistance.mapper;
 
+import java.util.List;
+
 import config.Mapper;
+import poly.dto.ChatDTO;
 import poly.dto.UserDTO;
 
 @Mapper("UserMapper")
@@ -23,4 +26,6 @@ public interface UserMapper {
 	public int updateGoogleUserRegNo(UserDTO uDTO2) throws Exception;
 	// 구글 유저 user_id 생성
 	public int updateGoogleUserId(UserDTO uDTO2) throws Exception;
+	// 결과페이지
+	public List<ChatDTO> getResultList(ChatDTO cDTO) throws Exception;
 }

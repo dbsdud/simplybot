@@ -107,4 +107,36 @@
 		SET USER_ID = #{user_id}
 		WHERE USER_NO = #{reg_no}
 	</update>
+	<!-- 결과페이지 -->
+	<select id="getResultList" resultType="ChatDTO">
+		SELECT
+			SURVEY_NO as survey_no,
+			USER_ID as user_id,
+			REG_DATE as reg_date,
+			TEXT_1 as text_1,
+			TEXT_2 as text_2,
+			TEXT_3 as text_3,
+			TEXT_4 as text_4,
+			TEXT_5 as text_5,
+			TEXT_6 as text_6,
+			TEXT_7 as text_7,
+			TEXT_8 as text_8,
+			TEXT_9 as text_9,
+			TEXT_10 as text_10,
+			TEXT_11 as text_11,
+			TEXT_12 as text_12,
+			TEXT_13 as text_13,
+			TEXT_14 as text_14,
+			TEXT_15 as text_15,
+			TEXT_16 as text_16,
+			TEXT_17 as text_17,
+			TEXT_18 as text_18,
+			TEXT_19 as text_19,
+			TEXT_20 as text_20,
+			TEXT_21 as text_21
+		FROM
+			SURVEY_ANXIETY
+		WHERE
+			USER_ID = #{user_id}
+	</select>
 </mapper>

@@ -1,5 +1,8 @@
 package poly.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import poly.dto.ChatDTO;
 import poly.dto.UserDTO;
+import poly.service.IChatService;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
 import poly.util.SecurityUtil;
@@ -22,6 +28,9 @@ public class HomeController {
 	
 	@Resource(name="UserService")
 	private IUserService userService;
+	
+	@Resource(name="ChatService")
+	private IChatService chatService;
 	
 	@RequestMapping(value="/home")
 	public String home(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception {
@@ -74,7 +83,6 @@ public class HomeController {
 		}
 		
 		return "redirect:/home.do";
-		/*return "redirect:/home.do?user_id=" + getGoogleUser.getUser_id();*/
 	}
 	
 	// 카카오 회원가입
@@ -127,7 +135,6 @@ public class HomeController {
 		}
 	
 		return "redirect:/home.do";
-		/*return "redirect:/home.do?user_id=" + getKakaoUser.getUser_id();*/
 	}
 	
 	// 페북 로그인
@@ -158,7 +165,31 @@ public class HomeController {
 		log.info(this.getClass() + " myPage start!");
 		String user_id = CmmUtil.nvl(req.getParameter("user_id"));
 		log.info(this.getClass() + " user_id : " + user_id);
+		
+		ChatDTO cDTO = new ChatDTO();
+		cDTO.setUser_id(user_id);
+		List<ChatDTO> cList = userService.getResultList(cDTO);
+		if(cList == null) {
+			cList = new ArrayList<ChatDTO>();
+		}
+		model.addAttribute("cList", cList);
+		log.info(this.getClass() + " survey_no : " + cList.get(0).getSurvey_no());
+		
 		log.info(this.getClass() + " myPage end!");
 		return "/myPage";
 	}
+	// 결과페이지
+	/*@RequestMapping(value="/resultList")
+	public @ResponseBody List<ChatDTO> resultList(HttpServletRequest req) throws Exception {
+		String user_id = CmmUtil.nvl(req.getParameter("user_id"));
+		
+		ChatDTO cDTO = new ChatDTO();
+		cDTO.setUser_id(user_id);
+		log.info(this.getClass() + " user_id : " + user_id);
+		
+		List<ChatDTO> cList = userService.getResultList(cDTO);
+		log.info(this.getClass() + " survey_no : " + cList.get(0).getSurvey_no());
+		
+		return cList;
+	}*/
 }
