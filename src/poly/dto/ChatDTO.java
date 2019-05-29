@@ -25,6 +25,13 @@ public class ChatDTO {
 	private String text_19;
 	private String text_20;
 	private String text_21;
+	private String totalScore;
+	public String getTotalScore() {
+		return totalScore;
+	}
+	public void setTotalScore(String totalScore) {
+		this.totalScore = totalScore;
+	}
 	public String getSurvey_no() {
 		return survey_no;
 	}

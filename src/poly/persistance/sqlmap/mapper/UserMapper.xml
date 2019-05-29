@@ -133,7 +133,8 @@
 			TEXT_18 as text_18,
 			TEXT_19 as text_19,
 			TEXT_20 as text_20,
-			TEXT_21 as text_21
+			TEXT_21 as text_21,
+			TOTALSCORE as totalscore
 		FROM
 			SURVEY_ANXIETY
 		WHERE

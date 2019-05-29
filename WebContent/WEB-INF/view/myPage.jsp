@@ -18,8 +18,11 @@
 	href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/timeline.css">
+<link rel="stylesheet" href="/assets/css/c3.css">
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/d3.js" charset="utf-8"></script>
+<script src="/assets/js/c3.js"></script>
 <style>
 * {
 	margin: 0px;
@@ -87,7 +90,7 @@ ul.tab li.current {
 }
 
 .card {
-	height: 400px;
+	height: 40%;
 	width: 320px;
 	border-radius: 15px;
 	display: inline-block;
@@ -262,6 +265,58 @@ $(document).ready(function() {
 	});
 });
 </script> -->
+    <script type="text/javascript">
+    var dataObject = new Array();
+    var sumData = 0, avgData = 0;
+    <% for(int i = 0; i < cList.size(); i++) { %>
+    	dataObject.push(<%= cList.get(i).getTotalScore() %>);
+    <% } %>
+    console.log(dataObject);
+    for(var i = 0; i < dataObject.length; i++) {
+    	sumData += dataObject[i];
+    	avgData = Math.round(sumData / dataObject.length);
+    }
+    console.log(sumData);
+    console.log(avgData);
+    var chart;
+    $(document).ready(function(){
+    	chart =	c3.generate({
+   			bindto: '#chart',
+       		data: {
+           	columns: [
+               	['불안감', avgData]
+           	],
+           	type: 'gauge',
+           	onclick: function (d, i) { console.log("onclick", d, i); },
+           	onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+           	onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+       	},
+       	gauge: {
+           	label: {
+               	format: function(value, ratio) {
+                   	return value;
+               	},
+               	show: false // to turn off the min/max labels.
+           	},
+       		min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+       		max: 63, // 100 is default
+       		units: ' %',
+//	        width: 39 // for adjusting arc thickness
+    	   	},
+    	   	color: {
+   	    	    pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+       	    	threshold: {
+//	 	      unit: 'value', // percentage is default
+//         	  max: 200, // 100 is default
+               	values: [30, 60, 90, 100]
+            	}
+        	},
+        	size: {
+            	height: 180
+        	}
+    	});
+    });
+    </script>
 </head>
 <body class="w3-light-grey w3-content" style="max-width: 1600px;">
 	<%@include file="top.jsp"%>
@@ -287,8 +342,28 @@ $(document).ready(function() {
 						<div class="card-body-header">
 							<% if(!"".equals(g_name) && "".equals(nickname)) { %>
 							<p><%= g_name + "님 불안척도 점수는" %></p>
+							<h1><%= Integer.parseInt(cList.get(i).getTotalScore()) %>점</h1>
+								<% if(Integer.parseInt(cList.get(i).getTotalScore()) < 22) { %>
+							<p>정상적인 심리 상태입니다</p>
+								<% } else if(Integer.parseInt(cList.get(i).getTotalScore()) > 21 && Integer.parseInt(cList.get(i).getTotalScore()) < 27) { %>
+							<p>약간 불안한 상태로 <br /> 관찰과 개입을 요합니다</p>
+								<% } else if(Integer.parseInt(cList.get(i).getTotalScore()) > 26 && Integer.parseInt(cList.get(i).getTotalScore()) < 32) { %>
+							<p>심한 불안 상태로 상담이 필요합니다</p>
+								<% } else { %>
+							<p>극심한 불안 상태로 <br /> 치료가 필요합니다</p>
+								<% } %>
 							<% } else { %>
 							<p><%= nickname + "님 불안척도 점수는" %></p>
+							<h1><%= Integer.parseInt(cList.get(i).getTotalScore()) %>점</h1>
+								<% if(Integer.parseInt(cList.get(i).getTotalScore()) < 22) { %>
+							<p>정상적인 심리 상태입니다</p>
+								<% } else if(Integer.parseInt(cList.get(i).getTotalScore()) > 21 && Integer.parseInt(cList.get(i).getTotalScore()) < 27) { %>
+							<p>약간 불안한 상태로 관찰과 개입을 요합니다</p>
+								<% } else if(Integer.parseInt(cList.get(i).getTotalScore()) > 26 && Integer.parseInt(cList.get(i).getTotalScore()) < 32) { %>
+							<p>심한 불안 상태로 상담이 필요합니다</p>
+								<% } else { %>
+							<p>극심한 불안 상태로 치료가 필요합니다</p>
+								<% } %>
 							<% } %>
 						</div>
 						<!--  카드 바디 푸터 -->
@@ -305,22 +380,39 @@ $(document).ready(function() {
 				</div>
 			</a>
 			<% } %>
+		<% } if(cList.isEmpty()) { %>
+			<p>검사 진행 내역이 없습니다</p>
+			<div class="w3-hide-large" style="margin-top: 100%;"></div>
+			<!-- <div class="w3-hide-small" style="margin-top: 52.1%;"></div> -->
 		<% } %>
 		</div>
 		<div id="tab2" class="tabcontent">
-			<h3>Portfolio</h3>
-			<p>Contrary to popular belief, Lorem Ipsum is not simply random
-				text. It has roots in a piece of classical Latin literature from 45
-				BC, making it over 2000 years old. Richard McClintock, a Latin
-				professor at Hampden-Sydney College in Virginia, looked up one of
-				the more obscure Latin words, consectetur, from a Lorem Ipsum
-				passage, and going through the cites of the word in classical
-				literature, discovered the undoubtable source. Lorem Ipsum comes
-				from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-				(The Extremes of Good and Evil) by Cicero, written in 45 BC. This
-				book is a treatise on the theory of ethics, very popular during the
-				Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-				amet..", comes from a line in section 1.10.32.</p>
+			<div id="chart"></div>
+			<a href="#"> <!-- 클릭 시 링크 설정 -->
+				<div class="card" style="height: 30%;">
+					<!-- 카드 헤더 -->
+					<div class="card-header">
+						<p class="card-body-nickname">검사결과</p>
+					</div>
+					<!--  카드 바디 -->
+					<div class="card-body">
+						<!--  카드 바디 헤더 -->
+						<div class="card-body-header">
+							
+						</div>
+						<!--  카드 바디 푸터 -->
+						<div class="card-body-footer">
+							<hr	style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+							<i class="reg_date"></i>
+							<% if(!"".equals(g_name) && "".equals(nickname)) { %>
+							<i class="user"><%= g_name + "님" %></i>
+							<% } else { %>
+							<i class="user"><%= nickname + "님" %></i>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</a>
 		</div>
 		<div class="w3-hide-large" style="margin-top: 172px;"></div>
 		<section id="footer" class="w3-container w3-padding-32" style="max-height: 20%; height: 100%; position: relative;">

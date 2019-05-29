@@ -26,7 +26,8 @@
 			TEXT_18,
 			TEXT_19, 
 			TEXT_20,
-			TEXT_21
+			TEXT_21,
+			TOTALSCORE
 		) VALUES (
 			#{user_id},
 			NOW(),
@@ -50,7 +51,8 @@
 			#{text_18},	
 			#{text_19},	
 			#{text_20},
-			#{text_21}
+			#{text_21},
+			#{totalScore}
 		)
 	</insert>
 </mapper>

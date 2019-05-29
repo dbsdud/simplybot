@@ -173,7 +173,6 @@ public class HomeController {
 			cList = new ArrayList<ChatDTO>();
 		}
 		model.addAttribute("cList", cList);
-		log.info(this.getClass() + " survey_no : " + cList.get(0).getSurvey_no());
 		
 		log.info(this.getClass() + " myPage end!");
 		return "/myPage";

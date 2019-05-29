@@ -94,6 +94,220 @@ public class ChatController {
 		String text_21 = CmmUtil.nvl(req.getParameter("text_21"));
 		log.info(this.getClass() + " text_21 : " + text_21);
 		
+		int totalScore = 0;
+		int score_1 = 0, score_2 = 1, score_3 = 2, score_4 = 3;
+		if(text_1.contains("1")) {
+			totalScore += score_1;
+		} else if(text_1.contains("2")) {
+			totalScore += score_2;
+		} else if(text_1.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_2.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_3.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_4.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_5.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_6.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_7.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_8.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_9.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_10.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_11.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_12.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_13.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_14.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_15.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_16.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_17.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_18.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_19.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_20.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		if(text_21.contains("1")) {
+			totalScore += score_1;
+		} else if(text_2.contains("2")) {
+			totalScore += score_2;
+		} else if(text_2.contains("3")) {
+			totalScore += score_3;
+		} else {
+			totalScore += score_4;
+		}
+		
+		String totalScore_str = String.valueOf(totalScore);
+		log.info(this.getClass() + " totalScore : " + totalScore_str);
 		ChatDTO cDTO = new ChatDTO();
 		cDTO.setUser_id(user_id);
 		cDTO.setText_1(text_1);
@@ -117,7 +331,7 @@ public class ChatController {
 		cDTO.setText_19(text_19);
 		cDTO.setText_20(text_20);
 		cDTO.setText_21(text_21);
-		
+		cDTO.setTotalScore(totalScore_str);
 		int insertResult = chatService.insertAnxietyChat(cDTO);
 		log.info(this.getClass() + " insertAnxietyChat Result : " + insertResult);
 		
