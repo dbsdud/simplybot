@@ -278,6 +278,21 @@ $(document).ready(function() {
     }
     console.log(sumData);
     console.log(avgData);
+    
+    $(document).ready(function() {
+    	var printAvgData = document.getElementById("avgData");
+    	printAvgData.innerHTML = "<h2>"+avgData+"점</h2>";
+    	if(avgData < 22) {
+    		printAvgData.innerHTML += "<p>정상적인 심리 상태입니다</p>";
+    	} else if(avgData > 21 && avgData < 27) {
+    		printAvgData.innerHTML += "<p>약간 불안한 상태로 <br /> 관찰과 개입을 요합니다</p>";
+    	} else if(avgData > 26 && avgData < 32) {
+    		printAvgData.innerHTML += "<p>심한 불안 상태로 상담이 필요합니다</p>";
+    	} else {
+    		printAvgData.innerHTML += "<p>극심한 불안 상태로 <br /> 치료가 필요합니다</p>";
+    	}
+    });
+    
     var chart;
     $(document).ready(function(){
     	chart =	c3.generate({
@@ -286,10 +301,10 @@ $(document).ready(function() {
            	columns: [
                	['불안감', avgData]
            	],
-           	type: 'gauge',
-           	onclick: function (d, i) { console.log("onclick", d, i); },
+           	type: 'gauge'
+           	/* onclick: function (d, i) { console.log("onclick", d, i); },
            	onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-           	onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+           	onmouseout: function (d, i) { console.log("onmouseout", d, i); } */
        	},
        	gauge: {
            	label: {
@@ -304,11 +319,11 @@ $(document).ready(function() {
 //	        width: 39 // for adjusting arc thickness
     	   	},
     	   	color: {
-   	    	    pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+   	    	    pattern: ['#60B044', '#F6C600', '#F97600', '#FF0000'], // the three color levels for the percentage values. green, orange, yellow, red
        	    	threshold: {
-//	 	      unit: 'value', // percentage is default
-//         	  max: 200, // 100 is default
-               	values: [30, 60, 90, 100]
+					unit: 'value', // percentage is default
+					max: 100, // 100 is default
+        	       	values: [22, 27, 32, 63] // 21 orange, 26 yellow, 31 red, 63 red
             	}
         	},
         	size: {
@@ -358,11 +373,11 @@ $(document).ready(function() {
 								<% if(Integer.parseInt(cList.get(i).getTotalScore()) < 22) { %>
 							<p>정상적인 심리 상태입니다</p>
 								<% } else if(Integer.parseInt(cList.get(i).getTotalScore()) > 21 && Integer.parseInt(cList.get(i).getTotalScore()) < 27) { %>
-							<p>약간 불안한 상태로 관찰과 개입을 요합니다</p>
+							<p>약간 불안한 상태로 <br /> 관찰과 개입을 요합니다</p>
 								<% } else if(Integer.parseInt(cList.get(i).getTotalScore()) > 26 && Integer.parseInt(cList.get(i).getTotalScore()) < 32) { %>
 							<p>심한 불안 상태로 상담이 필요합니다</p>
 								<% } else { %>
-							<p>극심한 불안 상태로 치료가 필요합니다</p>
+							<p>극심한 불안 상태로 <br /> 치료가 필요합니다</p>
 								<% } %>
 							<% } %>
 						</div>
@@ -379,6 +394,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</a>
+			<div class="w3-hide-small" style="margin-top: 22%;"></div>
 			<% } %>
 		<% } if(cList.isEmpty()) { %>
 			<p>검사 진행 내역이 없습니다</p>
@@ -387,18 +403,23 @@ $(document).ready(function() {
 		<% } %>
 		</div>
 		<div id="tab2" class="tabcontent">
-			<div id="chart"></div>
+			<% if(cList.isEmpty()) { %>
+			<p>검사 진행 내역이 없습니다</p>
+			<div class="w3-hide-large" style="margin-top: 100%;"></div>
+			<% } else { %>
+			<div id="chart" style="text-align: center;"></div>
 			<a href="#"> <!-- 클릭 시 링크 설정 -->
 				<div class="card" style="height: 30%;">
 					<!-- 카드 헤더 -->
 					<div class="card-header">
-						<p class="card-body-nickname">검사결과</p>
+						<!-- <p class="card-body-nickname">검사결과</p> -->
 					</div>
 					<!--  카드 바디 -->
 					<div class="card-body">
 						<!--  카드 바디 헤더 -->
 						<div class="card-body-header">
-							
+							<p>불안척도에 대한 평균 점수는</p>
+							<div id="avgData"></div>
 						</div>
 						<!--  카드 바디 푸터 -->
 						<div class="card-body-footer">
@@ -413,6 +434,8 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</a>
+			<div class="w3-hide-small" style="margin-top: 15%;"></div>
+			<% } %>
 		</div>
 		<div class="w3-hide-large" style="margin-top: 172px;"></div>
 		<section id="footer" class="w3-container w3-padding-32" style="max-height: 20%; height: 100%; position: relative;">
