@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.AdminMapper">
+	<select id="getAdmin" parameterType="AdminDTO" resultType="AdminDTO">
+		SELECT
+			ADMIN_NO AS admin_no,
+			ADMIN_ID AS	admin_id,
+			ADMIN_NAME AS admin_name
+		FROM
+			ADMIN
+		WHERE
+			ADMIN_ID = #{admin_id} AND ADMIN_PW = #{admin_pw}
+	</select>
+	<select id="getChatListCount" resultType="ChatDTO">
+		SELECT
+			SURVEY_NO AS survey_no,
+			USER_ID AS user_id,
+			REG_DATE AS	reg_date
+		FROM
+			SURVEY_ANXIETY
+	</select>
+	<select id="getUserListCount" resultType="UserDTO">
+		SELECT
+			USER_NO AS user_no
+		FROM
+			USER
+	</select>
+	<select id="getUserListTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USER
+	</select>
+	<select id="getUserList" parameterType="map" resultType="UserDTO">
+		SELECT
+			USER_NO AS user_no,
+			GOOGLE_USER_YN AS google_user_yn,
+			KAKAO_USER_YN AS kakao_user_yn,
+			G_NAME AS g_name,
+			G_IMAGE AS g_image,
+			G_EMAIL AS g_email,
+			NICKNAME AS nickname,
+			EMAIL AS email,
+			PROFILE_IMAGE AS profile_image,
+			THUMBNAIL_IMAGE AS thumbnail_image,
+			REG_NO AS reg_no,
+			REG_DATE AS reg_date,
+			USER_STATE AS user_state,
+			USER_ID AS user_id
+		FROM
+			USER
+		ORDER BY user_no desc limit #{pagenum}, #{contentnum}
+	</select>
+	<select id="getUserListSearchTotalCount" parameterType="map" resultType="java.lang.Integer">
+    	SELECT COUNT(*) FROM USER WHERE g_name like CONCAT('%',#{searchWord},'%') OR nickname like CONCAT('%',#{searchWord},'%') 
+	</select>
+	<select id="getUserSearchList" parameterType="map" resultType="UserDTO">
+		SELECT 
+			USER_NO AS user_no,
+			GOOGLE_USER_YN AS google_user_yn,
+			KAKAO_USER_YN AS kakao_user_yn,
+			G_NAME AS g_name,
+			G_IMAGE AS g_image,
+			G_EMAIL AS g_email,
+			NICKNAME AS nickname,
+			EMAIL AS email,
+			PROFILE_IMAGE AS profile_image,
+			THUMBNAIL_IMAGE AS thumbnail_image,
+			REG_NO AS reg_no,
+			REG_DATE AS reg_date,
+			USER_STATE AS user_state,
+			USER_ID AS user_id
+		FROM USER WHERE g_name like CONCAT('%',#{searchWord},'%') OR nickname like CONCAT('%',#{searchWord},'%')
+	</select>
+	<select id="getChatListTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM SURVEY_ANXIETY
+	</select>
+	<select id="getChatList" parameterType="map" resultType="ChatDTO">
+		SELECT
+			SURVEY_NO AS survey_no,
+			USER_ID AS user_id,
+			REG_DATE AS reg_date,
+			TOTALSCORE AS totalscore
+		FROM
+			SURVEY_ANXIETY
+		ORDER BY survey_no desc limit #{pagenum}, #{contentnum}
+	</select>
+	<select id="getChatListSearchTotalCount" parameterType="map" resultType="java.lang.Integer">
+    	SELECT COUNT(*) FROM SURVEY_ANXIETY WHERE reg_date like CONCAT('%',#{searchWord},'%') 
+	</select>
+	<select id="getChatSearchList" parameterType="map" resultType="ChatDTO">
+		SELECT 
+			SURVEY_NO AS survey_no,
+			USER_ID AS user_id,
+			REG_DATE AS reg_date,
+			TOTALSCORE AS totalscore
+		FROM SURVEY_ANXIETY WHERE reg_date like CONCAT('%',#{searchWord},'%')
+	</select>
+</mapper>

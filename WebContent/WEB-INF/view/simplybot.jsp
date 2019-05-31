@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/timeline.css">
+<script src="/assets/js/jquery.min.js"></script>
 <title>SIMPL'Y BOT - 대화</title>
 <style>
 	* {
@@ -44,6 +45,7 @@
 	.tl-storyslider {
 		height: !important 600px;
 	}
+	
 </style>
 </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px;">
@@ -57,6 +59,9 @@
 				index: 'https://landbot.io/u/H-173490-FLURVEZ18KGP1PIX/index.html',
 				container: '#my-landbot',
 			});
+			/* var f = $('.LandbotFrame__frame__content').contents().find('#hu-footer-input-mobile');
+			console.log(f);
+			f.style.display = "none"; */
 		</script>
 	</div>
 </body>

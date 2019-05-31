@@ -51,7 +51,7 @@ public class NoticeController {
 		log.info(this.getClass() + " noticeList Start");
 		
 		log.info(this.getClass() + " noticeList End");
-		return "/notice/noticeList";
+		return "/notice/NoticeList";
 	}
 	
 	/**

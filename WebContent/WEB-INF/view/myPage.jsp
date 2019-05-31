@@ -1,9 +1,11 @@
+<%@page import="poly.dto.UserDTO"%>
 <%@page import="java.util.List"%>
 <%@ page import="poly.dto.ChatDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	List<ChatDTO> cList = (List<ChatDTO>)request.getAttribute("cList");
+	List<UserDTO> uList = (List<UserDTO>)request.getAttribute("uList");
 %>
 <html>
 <head>
@@ -394,9 +396,9 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</a>
-			<div class="w3-hide-small" style="margin-top: 22%;"></div>
 			<% } %>
-		<% } if(cList.isEmpty()) { %>
+			<!-- <div class="w3-hide-small" style="margin-top: 22%;"></div> -->
+		<% } if (cList.isEmpty()) { %>
 			<p>검사 진행 내역이 없습니다</p>
 			<div class="w3-hide-large" style="margin-top: 100%;"></div>
 			<!-- <div class="w3-hide-small" style="margin-top: 52.1%;"></div> -->
