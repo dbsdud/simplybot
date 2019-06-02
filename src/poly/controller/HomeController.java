@@ -32,15 +32,15 @@ public class HomeController {
 	@Resource(name="ChatService")
 	private IChatService chatService;
 	
-	@RequestMapping(value="/home")
+	/*@RequestMapping(value="/")
 	public String home(HttpServletRequest req, HttpServletResponse res, Model model, HttpSession session) throws Exception {
 		log.info(this.getClass() + " Welcome Home");
 		return "/home";
-	}
+	}*/
 	// 카카오 로그인 
 	
 	// 구글 로그인
-	@RequestMapping(value="/auth/google/callback")
+	@RequestMapping(value="auth/google/callback")
 	public String googleCallback(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception {
 		String g_name = CmmUtil.nvl(req.getParameter("g_name").toString().replaceAll("\"", ""));
 		String g_image = CmmUtil.nvl(req.getParameter("g_image").toString().replaceAll("\"", ""));
@@ -82,11 +82,11 @@ public class HomeController {
 			session.setAttribute("user_id", getGoogleUser.getUser_id());
 		}
 		
-		return "redirect:/home.do";
+		return "redirect:/main.do";
 	}
 	
 	// 카카오 회원가입
-	@RequestMapping(value="/auth/kakao/callback")
+	@RequestMapping(value="auth/kakao/callback")
 	public String kakaoCallback(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
 		String nickname = CmmUtil.nvl(req.getParameter("nickname").toString().replaceAll("\"", ""));
 		String email = CmmUtil.nvl(req.getParameter("email").toString().replaceAll("\"", ""));
@@ -134,7 +134,7 @@ public class HomeController {
 			session.setAttribute("user_id", getKakaoUser.getUser_id());
 		}
 	
-		return "redirect:/home.do";
+		return "redirect:/main.do";
 	}
 	
 	// 페북 로그인
@@ -151,13 +151,13 @@ public class HomeController {
 		log.info(" f_name : " + f_name);
 		log.info(" f_id : " + f_id);
 		log.info(" f_token : " + f_token);
-		return "redirect:/home.do";
+		return "redirect:/main.do";
 	}
 	// 로그아웃
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "redirect:/home.do";
+		return "redirect:/main.do";
 	}
 	// 마이페이지 이동
 	@RequestMapping(value="/myPage")

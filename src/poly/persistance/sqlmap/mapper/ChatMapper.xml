@@ -3,7 +3,7 @@
 <mapper namespace="poly.persistance.mapper.ChatMapper">
 	<!-- 채팅기록 DB 저장 -->
 	<insert id="insertAnxietyChat" parameterType="ChatDTO">
-		INSERT INTO SURVEY_ANXIETY (
+		INSERT INTO survey_anxiety (
 			USER_ID,
 			REG_DATE,
 			TEXT_1,	

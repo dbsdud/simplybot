@@ -335,6 +335,6 @@ public class ChatController {
 		int insertResult = chatService.insertAnxietyChat(cDTO);
 		log.info(this.getClass() + " insertAnxietyChat Result : " + insertResult);
 		
-		return "redirect:/home.do?user_id="+user_id;
+		return "redirect:/main.do?user_id="+user_id;
 	}
 }

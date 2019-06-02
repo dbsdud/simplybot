@@ -11,7 +11,7 @@
 			THUMBNAIL_IMAGE as thumbnail_image,
 			USER_ID as user_id
 		FROM
-			USER
+			user
 		WHERE
 			KAKAO_USER_YN = 1
 		AND
@@ -21,7 +21,7 @@
 	</select>
 	<!-- 카카오 회원가입 -->
 	<insert id="insertKakaoUser" parameterType="UserDTO">
-		INSERT INTO USER(
+		INSERT INTO user(
 			KAKAO_USER_YN,
 			NICKNAME,
 			EMAIL,
@@ -43,17 +43,17 @@
 		</selectKey>
 	</insert>
 	<update id="updateKakaoUserRegNo" parameterType="UserDTO"><!-- 카카오 유저  regNo 저장 -->
-		UPDATE USER
+		UPDATE user
 		SET REG_NO = #{reg_no}
 		WHERE USER_NO = #{reg_no}
 	</update>
 	<update id="updateKakaoUserId" parameterType="UserDTO"><!-- 카카오 유저 user_id 생성 -->
-		UPDATE USER
+		UPDATE user
 		SET USER_ID = #{user_id}
 		WHERE USER_NO = #{reg_no}
 	</update>
 	<update id="updateKakaoUserImage" parameterType="UserDTO">
-		UPDATE USER
+		UPDATE user
 		SET 
 			PROFILE_IMAGE = #{profile_image},
 			THUMBNAIL_IMAGE = #{thumbnail_image}
@@ -68,7 +68,7 @@
 			G_IMAGE as g_image,
 			USER_ID as user_id
 		FROM
-			USER
+			user
 		WHERE
 			GOOGLE_USER_YN = 1
 		AND
@@ -78,7 +78,7 @@
 	</select>
 	<!-- 구글 회원가입 -->
 	<insert id="insertGoogleUser" parameterType="UserDTO">
-		INSERT INTO USER(
+		INSERT INTO user(
 			GOOGLE_USER_YN,
 			G_NAME,
 			G_EMAIL,
@@ -98,12 +98,12 @@
 		</selectKey>
 	</insert>
 	<update id="updateGoogleUserRegNo" parameterType="UserDTO"><!-- 구글 유저  regNo 저장 -->
-		UPDATE USER
+		UPDATE user
 		SET REG_NO = #{reg_no}
 		WHERE USER_NO = #{reg_no}
 	</update>
 	<update id="updateGoogleUserId" parameterType="UserDTO"><!-- 구글 유저 user_id 생성 -->
-		UPDATE USER
+		UPDATE user
 		SET USER_ID = #{user_id}
 		WHERE USER_NO = #{reg_no}
 	</update>
@@ -136,7 +136,7 @@
 			TEXT_21 as text_21,
 			TOTALSCORE as totalscore
 		FROM
-			SURVEY_ANXIETY
+			survey_anxiety
 		WHERE
 			USER_ID = #{user_id}
 	</select>

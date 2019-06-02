@@ -53,7 +53,7 @@ gapi.load('auth2', function(){
 <!-- navbar -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:9;width:300px;font-weight:bold" id="mainSidebar">
 	<br>
-	<h3 class="w3-padding-64 w3-center"><b><a href="/home.do" style="text-decoration: none;">SIMPL'Y BOT</a></b></h3>
+	<h3 class="w3-padding-64 w3-center"><b><a href="/main.do" style="text-decoration: none;">SIMPL'Y BOT</a></b></h3>
 	<form name="myPage" style="display: none;">
 		<input type="hidden" id="user_no" name="user_no" value="<%= user_no %>" />
 	</form>
@@ -71,7 +71,7 @@ gapi.load('auth2', function(){
 	<a href="javascript:void(0)" onclick="sidebarClose()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
 </nav>
 <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16" style="z-index: 8;">
-	<span class="w3-left w3-padding"><a href="/home.do" style="text-decoration: none;">SIMPL'Y BOT</a></span>
+	<span class="w3-left w3-padding"><a href="/main.do" style="text-decoration: none;">SIMPL'Y BOT</a></span>
 	<a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="sidebarOpen()">☰</a>
 </header>
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="sidebarClose()" style="cursor:pointer" title="close side menu" id="mainOverlay"></div>

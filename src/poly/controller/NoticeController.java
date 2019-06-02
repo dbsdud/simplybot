@@ -43,7 +43,7 @@ public class NoticeController {
 	public String main(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws Exception{
 		
 		System.out.println("main");
-		return "/index";
+		return "/home";
 	}
 	
 	@RequestMapping(value="/notice/noticeList")

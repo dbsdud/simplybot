@@ -27,11 +27,12 @@
         lazy-init="false">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <!-- localhost -->
-        <property name="url" value="jdbc:mysql://localhost:3306/simplybot?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Seoul" />
+        <!-- <property name="url" value="jdbc:mysql://localhost:3306/simplybot?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Seoul" /> -->
         <!-- AWS LINUX Server -->
-        <!-- <property name="url" value="jdbc:mysql://13.209.164.26:3306/superdev?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=Asia/Seoul" /> -->
+        <property name="url" value="jdbc:mysql://15.164.160.236:3306/simplybot?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" />
         <property name="username" value="simplybot" />
-        <property name="password" value="1234" />
+        <!-- <property name="password" value="1234" /> -->
+        <property name="password" value="apdlvmf3A?" />
     </bean>
     
 </beans>

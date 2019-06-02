@@ -71,7 +71,8 @@
 						var g_token = googleUser.getAuthResponse().id_token;
 				        console.log("ID Token: " + g_token);
 				        
-				        location.href='/auth/google/callback.do?g_name='+g_name+'&g_image='+g_image+'&g_email='+g_email+'&g_token='+g_token;
+				        location.href='http://www.simplybot.tk/auth/google/callback.do?g_name='+g_name+'&g_image='+g_image+'&g_email='+g_email+'&g_token='+g_token;
+				        /* location.href='/auth/google/callback.do?g_name='+g_name+'&g_image='+g_image+'&g_email='+g_email+'&g_token='+g_token; */
 					}
 				</script>
 				<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
@@ -107,6 +108,7 @@
 											console.log(" thumbnail_image : " + JSON.stringify(res.properties.thumbnail_image));
 											console.log(" email : " + JSON.stringify(res.kakao_account.email));
 											location.href='/auth/kakao/callback.do?kakao_id='+kakao_id+'&nickname='+nickname+'&profile_image='+profile_image+'&thumbnail_image='+thumbnail_image+'&email='+email;
+											/* location.href='/auth/kakao/callback.do?kakao_id='+kakao_id+'&nickname='+nickname+'&profile_image='+profile_image+'&thumbnail_image='+thumbnail_image+'&email='+email; */
 										},
 										fail: function(error){
 											alert(JSON.stringify(error));
@@ -137,8 +139,9 @@
 						var auth2 = gapi.auth2.getAuthInstance();
 						auth2.signOut().then(function() {
 							console.log('User signed out.');
-							location.href='/logout.do';
 						});
+						auth2.disconnect();
+						location.href='/logout.do';
 					}
 				</script>
 				<!-- 카카오 로그아웃 버튼 -->
@@ -156,8 +159,9 @@
 						var auth2 = gapi.auth2.getAuthInstance();
 						auth2.signOut().then(function() {
 							console.log('User signed out.');
-							location.href='/logout.do';
 						});
+						auth2.disconnect();
+						location.href='/logout.do';
 					}
 				</script>
 				<% } %>
